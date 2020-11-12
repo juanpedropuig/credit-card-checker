@@ -115,10 +115,50 @@ const idInvalidCardCompanies = invalidNestedArr => {
 
 
 
-const invalidArr = findInvalidCards(batch);
-console.log(invalidArr);
-const compan = idInvalidCardCompanies(invalidArr);
-console.log(compan);
+// Converts a string of credit card numbers into an array.
+const convertStringIntoArray = str => {
+  // Divides a string into individual numbers inside quotes.
+  const creditCardArray = str.split('');
+  const parsed = [];
+
+  // Iterates through the array converting each string value into integer.
+  creditCardArray.forEach(val => {
+    const parsedValue = parseInt(val);
+    parsed.push(parsedValue);
+  });
+
+  return parsed;
+}
+
+
+// New Visa credit card numbers to validate.
+const visa1 = '4974616062367815';
+const visa2 = '4916350537834925';
+const visa3 = '4929713285693076888';
+
+// New Mastercard credit card numbers to validate.
+const mastercard1 = '5430170737128330';
+const mastercard2 = '5251128771524703';
+const mastercard3 = '5314596775727156';
+
+const secondBatch = [visa1, visa2, visa3, mastercard1, mastercard2, mastercard3];
+
+// Converts batch of string arrays into batch of integer arrays.
+const convertingBatch = nestedArr => {
+  const convertedArrays = [];
+  
+  // Iterates through arrays inside the nestedArr to convert them into integer arrays.
+  nestedArr.forEach(arr => {
+    const newArr = convertStringIntoArray(arr);
+    convertedArrays.push(newArr);
+  })
+
+  return convertedArrays;
+}
+
+// Converted secondBatch into integers.
+const convertedSecondBatch = convertingBatch(secondBatch);
+
 
 
 
